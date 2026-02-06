@@ -1,0 +1,475 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    font-family: 'Poppins';
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input,
+textarea,
+button,
+a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:focus,
+a:visited,
+a:active {
+    outline: none;
+}
+
+a {
+    outline: none;
+}
+
+:root {
+    --tertiary-color: rgb(235, 36, 36);
+}
+
+.container {
+    background: url(./steptodown.com615710.jpg);
+    height: 100lvh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+.nameBox {
+    width: 80vw;
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 auto;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    font-size: 14px;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    box-shadow: 1px 12px 29px rgba(255, 214, 216, 0.1);
+    list-style: none;
+    border-radius: 18px;
+    background: rgba(255, 239, 239, 0.61);
+    padding: 3em 3em 6em;
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+
+}
+
+.close {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.valentineBox {
+    width: 80vw;
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 auto;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    font-size: 14px;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    box-shadow: 1px 12px 29px rgba(255, 237, 238, 0.1);
+    list-style: none;
+    border-radius: 30px;
+    background: rgba(255, 244, 244, 0.747);
+    padding: 3em;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s opacity;
+
+}
+
+.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.messageBox {
+    width: 90vw;
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 auto;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+    font-size: 14px;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    box-shadow: 1px 12px 29px rgba(255, 237, 238, 0.1);
+    list-style: none;
+    border-radius: 30px;
+    background: rgba(255, 244, 244, 0.747);
+    padding: 3em;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s opacity;
+
+}
+
+.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.message-image {
+    width: 30%;
+    margin: 0 auto 8px;
+    animation: subshake 2s infinite;
+    display: block;
+}
+
+.nameBox img {
+    width: 50%;
+    animation: opacity 1.4s infinite;
+}
+
+.valentineBox img {
+
+    animation: opacity 1.4s infinite;
+}
+
+
+
+@keyframes opacity {
+    0% {
+        transform: translateY(0%);
+
+    }
+
+    50% {
+        transform: translateY(2%);
+
+    }
+
+    100% {
+        transform: translateY(0%);
+
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: scale(1.01);
+
+    }
+
+    50% {
+        transform: scale(1.05)
+    }
+
+    75% {
+        transform: scale(1.1);
+
+    }
+
+    100% {
+        transform: scale(1.05);
+
+    }
+}
+
+@keyframes subshake {
+    0% {
+        transform: scale(1.01);
+
+    }
+
+    50% {
+        transform: scale(1.03)
+    }
+
+    75% {
+        transform: scale(1.06);
+
+    }
+
+    100% {
+        transform: scale(1.03);
+
+    }
+}
+
+h2 {
+    font-family: 'Poppins';
+    text-align: center;
+    color: var(--tertiary-color);
+}
+
+.messageBox img {
+    animation: subshake 2s infinite;
+}
+
+.enter-name {
+    width: 95%;
+    height: 36px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: var(--tertiary-color);
+    background-color: var(--background);
+    outline: none;
+    margin-top: 1em;
+    color: var(--tertiary-color);
+    padding-left: .4em;
+    font-size: 12.4px;
+    font-weight: 500;
+}
+
+.submit-btn,
+.view-details-btn,
+#nextMessageBtn,
+#nextPlaylistBtn,
+.whatsapp,
+#whatsappBtn {
+    background-color: var(--tertiary-color);
+    width: 95%;
+    height: 36px;
+    font-weight: 600;
+    margin-top: 1em;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 100px;
+    transition: .3s transform;
+    animation: subshake 2s infinite;
+}
+
+
+
+.submit-btn:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+.submit-btn:active {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+}
+
+#yesBtn {
+    background-color: var(--tertiary-color);
+    width: 45%;
+    height: 36px;
+    font-weight: 500;
+    margin-top: 1em;
+    border: none;
+    color: white;
+    border-radius: 100px;
+    transition: .3s transform;
+    animation: shake 1.5s infinite;
+}
+
+#noBtn {
+    background-color: rgba(255, 255, 255, 0.733);
+    width: 45%;
+    max-width: 190px;
+    box-shadow: 1px 1px 5px rgb(224, 71, 71);
+    height: 36px;
+    margin-left: 2em;
+    font-weight: 500;
+    margin-top: 1em;
+    border: none;
+    color: var(--tertiary-color);
+    border-radius: 100px;
+    transition: .3s transform;
+    position: relative;
+    animation: liquidWave 2s infinite linear;
+    overflow: hidden;
+}
+
+/* Liquid effect pseudo-elements for No button only */
+#noBtn::before,
+#noBtn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 100px;
+    transition: all 0.5s ease;
+    z-index: 1;
+    animation: liquidWave 2s infinite linear;
+}
+
+#noBtn::before {
+    background: linear-gradient(90deg, rgba(224, 71, 71, 0.1), rgba(224, 71, 71, 0.2));
+    opacity: 0;
+}
+
+#noBtn::after {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: scale(0);
+    opacity: 0;
+}
+
+#noBtn:hover::before {
+    opacity: 1;
+    animation: liquidWave 2s infinite linear;
+}
+
+#noBtn:active::after {
+    transform: scale(1.5);
+    opacity: 0.8;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Liquid wave animation */
+@keyframes liquidWave {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+#yesBtn {
+    background-color: var(--tertiary-color);
+    width: 45%;
+    height: 36px;
+    font-weight: 500;
+    margin-top: 1em;
+    border: none;
+    color: white;
+    border-radius: 100px;
+    transition: .3s transform;
+}
+
+#yesBtn:hover,
+#noBtn:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+#yesBtn:active,
+#noBtn:active {
+    transform: scale(0.98);
+    cursor: pointer;
+}
+
+#yesBtn:hover,
+#noBtn:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+#yesBtn:active,
+#noBtn:active {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+#response,
+.display-name {
+    color: var(--tertiary-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+.display-name span {
+    font-weight: 800;
+}
+
+.celebration-vector {
+    width: 100%;
+    height: 300px;
+    margin: 0 2em;
+    position: absolute;
+    opacity: 0%;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+}
+
+.event-details {
+    margin-top: 1.2em;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.event-details h3 {
+    margin-bottom: 0.4em;
+    color: #e63946;
+}
+
+.event-details p {
+    margin: 0.2em 0;
+}
+
+.liquid {
+    backdrop-filter: blur(3px) saturate(180%);
+    -webkit-backdrop-filter: blur(6px) saturate(180%);
+
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.541), rgba(255, 230, 235, 0.507));
+    border: 1px solid rgba(255, 255, 255, 0.993);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0),
+        0 1px 10px rgba(255, 234, 237, 0.274);
+
+    animation: liquidFloat 6s ease-in-out infinite;
+}
+
+@keyframes liquidFloat {
+    0% {
+        transform: translate(-50%, -30%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -32%) scale(1.01);
+    }
+
+    100% {
+        transform: translate(-50%, -30%) scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .valentineBox,
+    .messageBox {
+        width: 92vw;
+        max-width: 500px;
+        min-width: 300px;
+        top: 17%;
+        padding: 1.4em 2em 2em 2em;
+        left: 50%;
+        transform: translate(-50%, -17%);
+
+    }
+
+}

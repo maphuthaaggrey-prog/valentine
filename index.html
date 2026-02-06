@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" sizes="192x192" href="./Val-love.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="musicstyle.css">
+    <meta name="description" content="A special Valentine's invitation just for you!">
+    <meta property="og:image" content="/design.png">
+
+    <style>
+        .event-details,
+        .final-message,
+        .playlist-message,
+        .joke-message,
+        .music-message {
+            margin-top: 1em;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .countdown {
+            font-weight: bold;
+            color: #e63946;
+        }
+
+        #noBtn {
+            transition: left 0.35s ease, top 0.35s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="container">
+            <div class="box">
+                <div class="valentineBox open liquid">
+                    <img src="./Val-love.png" width="50%">
+                    <div class="display-name">
+                        As we approach Valentine's day. I made this special for you <span class="emoji">🥹</span>
+                        Will you be my Valentine?
+                    </div>
+                    <div class="buttons">
+                        <button id="yesBtn">Yes</button>
+                        <button id="noBtn">No</button>
+                    </div>
+                </div>
+
+                <div class="messageBox liquid">
+                    <!-- Single image element that will change -->
+                    <img class="message-image" id="dynamicImage"
+                        src="vecteezy_ai-generated-heart-of-roses-png_35460027.png" alt="Dynamic Image">
+
+                    <div class="initial-message">
+                        <p id="response"></p>
+                        <button class="view-details-btn" style="display:none;">Press</button>
+                    </div>
+
+                    <div class="event-details">
+                        <p class="display-name">
+                            Just so you know, I'll be making our Valentine's reservations during Valentine's week.
+                            Location, time, and surprises will be revealed on the 13th!
+                        </p>
+                        <button id="nextMessageBtn">Next</button>
+                    </div>
+
+                    <div class="final-message">
+                        <p class="display-name">
+                            Keep in mind we have
+                            <span id="countdown"></span> — so start thinking red, white, or black. I’m curious to see
+                            what you’d wear.
+                        </p>
+                        <button class="whatsapp" id="howYouFeelingBtn">
+                            How you feeling?
+                        </button>
+                    </div>
+
+                    <div class="playlist-message">
+                        <p class="display-name">
+                            Before that—I made you a playlist<span class="emoji">🥹</span>
+                            I built a little music player down there to dedicate a few songs to you. I hope you’re
+                            enjoying them.
+                        </p>
+                        <button id="nextPlaylistBtn">Next</button>
+                    </div>
+
+                    <div class="joke-message">
+                        <p class="display-name">
+                            kea bapala <span class="emoji">😭😭😭</span> I just wanted to waste two minutes of your life. I don't have anyone for Valentine's tho.<span class="emoji">😔</span>
+                        </p>
+                        <button id="whatsappBtn">Last one</button>
+                    </div>
+                    <div class="music-message">
+                        <p class="display-name">
+                            But I so wish some of these six songs songs below were
+                            100%
+                            meant for you from me.<span class="emoji">😂🥹</span>
+                        </p>
+                        <button class="whatsapp">
+                            <a href="https://wa.link/j6ojxn" target="_blank">How you feeling? 👀</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="music-player liquid">
+        <div class="music-info">
+            <div class="album-art">
+                <div class="default-art"><i class="fas fa-heart"></i></div>
+                <img id="albumArt" src="" alt="Album Art" style="display: none;">
+            </div>
+            <div class="titles">
+                <h2 class="song-title" id="songTitle">My Valentine</h2>
+                <p class="artist" id="artist">Love Songs Collection</p>
+                <p class="album" id="album">Valentine's Day Special</p>
+            </div>
+        </div>
+
+        <div class="progress-area">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="timer">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" id="prevBtn">
+                <i class="fas fa-step-backward"></i>
+            </button>
+            <button class="control-btn" id="shuffleBtn">
+                <i class="fas fa-random"></i>
+            </button>
+            <button class="control-btn play-pause" id="playPauseBtn">
+                <i class="fas fa-play" id="playPauseIcon"></i>
+            </button>
+            <button class="control-btn" id="repeatBtn">
+                <i class="fas fa-redo"></i>
+            </button>
+            <button class="control-btn" id="nextBtn">
+                <i class="fas fa-step-forward"></i>
+            </button>
+        </div>
+
+        <div class="volume-control">
+            <i class="fas fa-volume-up"></i>
+            <div class="volume-slider" id="volumeSlider">
+                <div class="volume-percent" id="volumePercent"></div>
+            </div>
+        </div>
+    </div>
+    <div class="playlist-player liquid">
+        <p class="song-title" style="margin-bottom: 10px;">Selected For You:</p>
+        <div class="playlist">
+
+            <div class="playlist-item active" data-index="0">
+                <div class="playlist-icon">
+                    <img id="albumArt" src="./Cover of Hold On, We're Going Home by Drake, Majid Jordan.jpg"
+                        alt="Album Art">
+                </div>
+                <div class="playlist-info">
+                    <h4>Hold On, We're Going Home</h4>
+                    <p>Drake, Majid Jordan </p>
+                </div>
+                <div class="playlist-duration">3:47</div>
+            </div>
+            <div class="playlist-item active" data-index="1">
+                <div class="playlist-icon">
+                    <img id="albumArt" src="./Cover of To Summer, From Cole.jpg" alt="Album Art">
+                </div>
+                <div class="playlist-info">
+                    <h4>To Summer, From Cole</h4>
+                    <p>Summer Walker Ft. J Cole</p>
+                </div>
+                <div class="playlist-duration">2:27</div>
+            </div>
+            <div class="playlist-item active" data-index="2">
+                <div class="playlist-icon">
+                    <img id="albumArt" src="./Cover of No Fear by DeJ Loaf.jpg" alt="Album Art">
+                </div>
+                <div class="playlist-info">
+                    <h4>No Fear</h4>
+                    <p>Dej Loaf</p>
+                </div>
+                <div class="playlist-duration">2:49</div>
+            </div>
+            <div class="playlist-item" data-index="3">
+                <div class="playlist-icon">
+                    <img id="albumArt" src="./Cover of LIKE I SHOULD by FLVME.jpg" alt="Album Art">
+                </div>
+                <div class="playlist-info">
+                    <h4>Like I Should</h4>
+                    <p>Flvme</p>
+                </div>
+                <div class="playlist-duration">2:53</div>
+            </div>
+            <div class="playlist-item" data-index="4">
+                <div class="playlist-icon">
+                    <img id="albumArt" src="./Cover of Raindance Dave, Tems.jpg" alt="Album Art">
+                </div>
+                <div class="playlist-info">
+                    <h4>Raindance (feat. Tems)</h4>
+                    <p>Dave</p>
+                </div>
+                <div class="playlist-duration">3:39</div>
+            </div>
+            <div class="playlist-item" data-index="5">
+                <div class="playlist-icon">
+                    <img id="albumArt" src="./Cover of Love You More.jpg" alt="Album Art">
+                </div>
+                <div class="playlist-info">
+                    <h4>Love You More</h4>
+                    <p>Young Thug, Gunna</p>
+                </div>
+                <div class="playlist-duration">3:41</div>
+            </div>
+
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+    </div>
+
+
+
+    <script>
+
+        const valentineBox = document.querySelector('.valentineBox');
+        const messageBox = document.querySelector('.messageBox');
+        const initialMessage = document.querySelector('.initial-message');
+        const viewDetailsBtn = document.querySelector('.view-details-btn');
+        const eventDetails = document.querySelector('.event-details');
+        const finalMessage = document.querySelector('.final-message');
+        const playlistMessage = document.querySelector('.playlist-message');
+        const jokeMessage = document.querySelector('.joke-message');
+        const nextMessageBtn = document.getElementById('nextMessageBtn');
+        const nextPlaylistBtn = document.getElementById('nextPlaylistBtn');
+        const howYouFeelingBtn = document.getElementById('howYouFeelingBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const countdownEl = document.getElementById('countdown');
+        const dynamicImage = document.getElementById('dynamicImage');
+        const musicMessage = document.querySelector('.music-message');
+        const whatsappBtn = document.getElementById('whatsappBtn');
+
+        function moveButton() {
+            const box = document.querySelector('.valentineBox');
+            const boxRect = box.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            const maxX = boxRect.width - btnRect.width;
+            const maxY = boxRect.height - btnRect.height;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        }
+
+        noBtn.addEventListener('mouseenter', moveButton);
+        noBtn.addEventListener('click', moveButton);
+
+        yesBtn.addEventListener('click', () => {
+            valentineBox.classList.remove('open');
+            messageBox.classList.add('show');
+
+            document.getElementById('response').innerHTML =
+                "Ohh, You said yes! These roses are for you <span class='emoji'>🌹</span> Thank you for saving me from solo Valentine's. <span class='emoji'>🙂‍↔️</span>";
+
+            viewDetailsBtn.style.display = 'inline-block';
+
+
+            dynamicImage.src = "vecteezy_ai-generated-heart-of-roses-png_35460027.png";
+        });
+
+        viewDetailsBtn.addEventListener('click', () => {
+            initialMessage.style.display = 'none';
+            eventDetails.style.display = 'block';
+        });
+
+        nextMessageBtn.addEventListener('click', () => {
+            eventDetails.style.display = 'none';
+            finalMessage.style.display = 'block';
+        });
+
+        howYouFeelingBtn.addEventListener('click', () => {
+            finalMessage.style.display = 'none';
+            playlistMessage.style.display = 'block';
+        });
+
+        nextPlaylistBtn.addEventListener('click', () => {
+            playlistMessage.style.display = 'none';
+            jokeMessage.style.display = 'block';
+
+
+            dynamicImage.src = "prank_laugh.png";
+        });
+        whatsappBtn.addEventListener('click', () => {
+            jokeMessage.style.display = 'none';
+            musicMessage.style.display = 'block';
+
+
+            dynamicImage.src = "close-up-view-casette-music-concept-removebg-preview.png";
+        });
+
+        const revealDate = new Date(new Date().getFullYear(), 1, 14);
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = revealDate - now;
+
+            if (diff <= 0) {
+                countdownEl.textContent = "Details unlocked 😏";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            countdownEl.textContent = `${days} Days, ${hours} hours, ${minutes} minutes ${seconds} seconds remaining`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        const musicData = [
+            {
+                title: "Hold On, We're Going Home",
+                artist: "Drake ft. Majid Jordan",
+                album: "Nothing Was The Same",
+                src: "Hold%20On,%20We're%20Going%20Home%20-%20Drake.mp3",
+                cover: "Cover%20of%20Hold%20On,%20We're%20Going%20Home%20by%20Drake,%20Majid%20Jordan.jpg",
+                duration: "3:45"
+            },
+            {
+                title: "To Summer, From Cole",
+                artist: "Summer Walker ft. J Cole",
+                album: "Clear 2: Soft Life Ep",
+                src: "To%20Summer,%20From%20Cole.mp3",
+                cover: "Cover%20of%20To%20Summer,%20From%20Cole.jpg",
+                duration: "3:15"
+            },
+            {
+                title: "No Fear",
+                artist: "Dej Loaf",
+                album: "Single",
+                src: "No Fear - DeJ Loaf.mp3",
+                cover: "Cover%20of%20No%20Fear%20by%20DeJ%20Loaf.jpg",
+                duration: "3:45"
+            },
+            {
+                title: "Like I Should",
+                artist: "Flvme",
+                album: "Germander II",
+                src: "Flvme%20-%20Like%20I%20Should.mp3",
+                cover: "Cover%20of%20LIKE%20I%20SHOULD%20by%20FLVME.jpg",
+                duration: "4:20"
+            },
+            {
+                title: "Raindance (feat Tems)",
+                artist: "Dave",
+                album: "The Boy Who Played The Harp",
+                src: "Raindance (feat Tems) - Dave.mp3",
+                cover: "Cover%20of%20Raindance%20Dave,%20Tems.jpg",
+                duration: "3:15"
+            },
+            {
+                title: "Love You More",
+                artist: "Young Thug, Gunna",
+                album: "Punk",
+                src: "Love%20You%20More%20(with%20Nate%20Ruess,%20Gunna%20&%20Jeff%20Bhasker).mp3",
+                cover: "Cover%20of%20Love%20You%20More.jpg",
+                duration: "3:15"
+            }
+
+        ];
+
+
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playPauseIcon = document.getElementById('playPauseIcon');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const shuffleBtn = document.getElementById('shuffleBtn');
+        const repeatBtn = document.getElementById('repeatBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progress = document.getElementById('progress');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumePercent = document.getElementById('volumePercent');
+        const songTitle = document.getElementById('songTitle');
+        const artist = document.getElementById('artist');
+        const album = document.getElementById('album');
+        const albumArt = document.getElementById('albumArt');
+        const defaultArt = document.querySelector('.default-art');
+        const playlistItems = document.querySelectorAll('.playlist-item');
+
+
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        let isShuffled = false;
+        let isRepeated = false;
+
+
+        function initPlayer() {
+
+            loadSong(currentSongIndex);
+
+
+            audioPlayer.volume = 0.3;
+            updateVolumeUI();
+
+
+            playPauseBtn.addEventListener('click', togglePlayPause);
+            prevBtn.addEventListener('click', playPrevSong);
+            nextBtn.addEventListener('click', playNextSong);
+            shuffleBtn.addEventListener('click', toggleShuffle);
+            repeatBtn.addEventListener('click', toggleRepeat);
+
+            playlistItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const index = parseInt(this.dataset.index);
+
+                    currentSongIndex = index;
+                    loadSong(currentSongIndex);
+                    updateActivePlaylistItem();
+                    playSong();
+                });
+            });
+
+
+            progressBar.addEventListener('click', setProgress);
+
+
+            volumeSlider.addEventListener('click', setVolume);
+
+
+            audioPlayer.addEventListener('timeupdate', updateProgress);
+            audioPlayer.addEventListener('ended', onSongEnded);
+            audioPlayer.addEventListener('loadedmetadata', updateDuration);
+
+
+            updateActivePlaylistItem();
+        }
+
+
+        function loadSong(index) {
+            if (index < 0 || index >= musicData.length) return;
+
+            const song = musicData[index];
+
+
+            const cleanSrc = song.src.replace(/%20/g, ' ');
+            audioPlayer.src = cleanSrc;
+
+            songTitle.textContent = song.title;
+            artist.textContent = song.artist;
+            album.textContent = song.album;
+
+            if (song.cover) {
+
+                const cleanCover = song.cover.replace(/%20/g, ' ');
+                albumArt.src = cleanCover;
+                albumArt.style.display = 'block';
+                defaultArt.style.display = 'none';
+            } else {
+
+                albumArt.style.display = 'none';
+                defaultArt.style.display = 'flex';
+            }
+
+
+            updateActivePlaylistItem();
+
+
+            audioPlayer.load();
+        }
+
+
+        function updateActivePlaylistItem() {
+            playlistItems.forEach((item, index) => {
+                if (index === currentSongIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                pauseSong();
+            } else {
+                playSong();
+            }
+        }
+
+        function playSong() {
+            isPlaying = true;
+            audioPlayer.play().then(() => {
+                playPauseIcon.className = 'fas fa-pause';
+                playPauseBtn.classList.add('playing');
+            }).catch(e => {
+                console.log("Playback failed:", e);
+                isPlaying = false;
+
+                console.log("Click the play button to start playback");
+            });
+        }
+
+        function pauseSong() {
+            isPlaying = false;
+            audioPlayer.pause();
+            playPauseIcon.className = 'fas fa-play';
+            playPauseBtn.classList.remove('playing');
+        }
+
+        function playPrevSong() {
+            currentSongIndex--;
+            if (currentSongIndex < 0) {
+                currentSongIndex = musicData.length - 1;
+            }
+            loadSong(currentSongIndex);
+
+            playSong();
+        }
+
+        function playNextSong() {
+            currentSongIndex++;
+            if (currentSongIndex >= musicData.length) {
+                currentSongIndex = 0;
+            }
+            loadSong(currentSongIndex);
+
+            playSong();
+        }
+
+        // Toggle shuffle
+        function toggleShuffle() {
+            isShuffled = !isShuffled;
+            shuffleBtn.style.color = isShuffled ? '#fff' : 'var(--tertiary-color)';
+            shuffleBtn.style.background = isShuffled ? 'var(--tertiary-color)' : 'rgba(235, 36, 36, 0.1)';
+        }
+
+        // Toggle repeat
+        function toggleRepeat() {
+            isRepeated = !isRepeated;
+            repeatBtn.style.color = isRepeated ? '#fff' : 'var(--tertiary-color)';
+            repeatBtn.style.background = isRepeated ? 'var(--tertiary-color)' : 'rgba(235, 36, 36, 0.1)';
+        }
+
+
+        function updateProgress() {
+            const { currentTime, duration } = audioPlayer;
+
+            if (duration) {
+                const progressPercent = (currentTime / duration) * 100;
+                progress.style.width = `${progressPercent}%`;
+
+
+                currentTimeEl.textContent = formatTime(currentTime);
+            }
+        }
+
+
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audioPlayer.duration;
+
+            if (duration) {
+                audioPlayer.currentTime = (clickX / width) * duration;
+            }
+        }
+
+
+        function updateDuration() {
+            const duration = audioPlayer.duration;
+            durationEl.textContent = formatTime(duration);
+        }
+
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+
+        function onSongEnded() {
+            if (isRepeated) {
+
+                audioPlayer.currentTime = 0;
+                audioPlayer.play();
+            } else if (isShuffled) {
+
+                let newIndex;
+                do {
+                    newIndex = Math.floor(Math.random() * musicData.length);
+                } while (newIndex === currentSongIndex && musicData.length > 1);
+
+                currentSongIndex = newIndex;
+                loadSong(currentSongIndex);
+                playSong();
+            } else {
+
+                playNextSong();
+            }
+        }
+
+
+        function setVolume(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const volume = clickX / width;
+
+            audioPlayer.volume = volume;
+            updateVolumeUI();
+        }
+
+
+        function updateVolumeUI() {
+            const volume = audioPlayer.volume;
+            volumePercent.style.width = `${volume * 100}%`;
+        }
+
+
+        document.addEventListener('DOMContentLoaded', initPlayer);
+
+
+        document.addEventListener('click', function () {
+
+            if (audioPlayer.paused && !isPlaying) {
+                audioPlayer.load();
+            }
+        });
+
+
+        audioPlayer.addEventListener('error', function (e) {
+            console.error("Error loading audio:", e);
+            alert(`Error loading the song..`);
+        });
+    </script>
+
+</body>
+
+</html>
